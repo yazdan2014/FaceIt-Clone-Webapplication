@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+bottleneck = "==1.3.2"
+brotlipy = "==0.7.0"
+cachetools = "==4.2.1"
+certifi = "==2020.12.5"
+django = "*"
+djangorestframework = "*"
+redis = "*"
+celery = "==5.0.5"
+pillow = "*"
+channels = "*"
+django-celery-results = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

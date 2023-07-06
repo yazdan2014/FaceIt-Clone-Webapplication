@@ -1,0 +1,26 @@
+{% extends 'news/base.html' %}
+{% block content %}
+
+    <div style="margin: auto;width: 80%;border: 3px solid green;padding: 20px;">
+        <div style="height: 700px">
+            {% for item in shop_items %}
+                <div id="item1" style="width:30%;height: 280px;background-color: aqua;float: left;margin:0px 26px 20px 0px">
+                    <div style="height: 75%;background-color: lime">
+                    <!--{{item.picture}}-->
+                    </div>
+                    <div style="background-color: green;height: 25%">
+                    {{ item.name}}
+                        <br>
+                    {{ item.details}}
+                        <br>
+                    {{ item.price}}
+                    </div>
+        </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+{% endblock %}

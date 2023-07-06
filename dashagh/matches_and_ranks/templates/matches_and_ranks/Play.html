@@ -1,0 +1,160 @@
+{% extends 'news/base.html' %}
+{% block link %}
+<link rel="stylesheet" href="../../../static/css/SideBar.css">
+<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
+{% endblock link %}
+
+{% block content %}
+
+<div style="margin: auto;width: 80%;border: 3px solid green;padding: 10px;">
+    <h1>Play</h1>
+    <button type="button" class="btn btn-info" id="acceptPartyInvite" onclick="findMatch('csgo')">Start Searching For a Match</button>
+    <div id="searching"></div>
+</div>
+
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+
+<div class="page-wrapper chiller-theme toggled">
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div id="toggle-sidebar">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <!-- sidebar-header  -->
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="header-menu">
+                        <span>Counter Strike Global Offensive</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-fill" viewBox="0 0 16 16">
+                                    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                                </svg>
+                            </i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li> 
+
+                    <li>
+                        <a href="#">
+                            <span>CSGO 5v5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/csgo">
+                            <span>CSGO 5v5 Premium</span>
+                        </a>
+                    </li>
+
+                    <br><br>
+
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <span>Hubs</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="#">Valorant Iran
+                                        
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Big Black Cock</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <span>Tournaments</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <span class="sidebar-tips">
+                                        Find Tournaments to compete in your favourite gamemode, 
+                                        join as a team, party or on your own to get matched with others
+                                    </span>
+                                </li>
+                            
+                                <li>
+                                    <a href="#">Browse Tournaments</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <span>Teams</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <span class="sidebar-tips">
+                                        Let others know you're looking for a team or create your own.
+                                    </span>
+                                </li>
+                            
+                                <li>
+                                    <a href="#">Create A Team</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                   
+                    
+            <!-- sidebar-menu  -->
+        </div>
+        <!-- sidebar-content  -->
+        <div class="sidebar-footer">
+            <a href="#">
+                <i class="fa">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick" viewBox="0 0 16 16">
+                        <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2z"/>
+                        <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23z"/>
+                      </svg>
+                </i>
+                <span>VS</span>
+            </a>
+        </div>
+    </nav>
+
+{% endblock %}
+
+{% block script %}
+
+
+
+    jQuery(function ($) {
+
+        $(".sidebar-dropdown > a").click(function () {
+            $(".sidebar-submenu").slideUp(200);
+            if ($(this).parent().hasClass("active")) {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this).parent().removeClass("active");
+            } else {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this).next(".sidebar-submenu").slideDown(200);
+                $(this).parent().addClass("active");
+            }
+
+        });
+
+        $("#toggle-sidebar").click(function () {
+            $(".page-wrapper").toggleClass("toggled");
+        });
+    
+    
+    })
+{% endblock %}

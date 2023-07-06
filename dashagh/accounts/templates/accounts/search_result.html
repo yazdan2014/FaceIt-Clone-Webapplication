@@ -1,0 +1,57 @@
+{% extends 'news/base.html' %}
+{% block content %}
+
+
+
+
+    <div style="margin: auto;width: 80%;border: 3px solid green;padding: 10px;">
+
+        {% if searched %}
+            <h1> you searched for {{ searched }}</h1>
+            <br>
+
+            <ul>
+            {% for searched_user in users %}
+                {% if searched_user.username != user.username  %}
+                    {% if searched_user.username in friends_usernames %}
+                    <li>{{ searched_user.username }} <button class="btn btn-info friendState" disabled>Your friend</button></li> <br>
+
+                    {% elif searched_user.username in friend_requests_sent%}
+
+                    <li>{{ searched_user.username }} <button class="btn btn-secondary friendState" disabled>Already sent</button></li> <br>
+
+                    {% else %}
+
+                    <li id="{{searched_user.username}}">{{ searched_user.username}}<button type="button" class="btn btn-secondary friendState" id="frSend_{{searched_user.username}}" >Send Friend Request</button></li><br>
+
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% else %}
+            <h1>search nigger</h1>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    {% for searched_user in users %}
+    {% if searched_user.username != user.username  %}
+        {% if searched_user.username in friends_usernames  %}
+
+        {% elif searched_user.username in friend_requests_sent %}
+
+        {% else %}
+
+            document.getElementById("frSend_{{searched_user.username}}").onclick = function(){
+                sendFriendRequest('{{searched_user.username}}')
+                document.getElementById("frSend_{{searched_user.username}}").innerText =" Friend Request Sent"
+                document.getElementById("frSend_{{searched_user.username}}").disabled = true
+            }
+
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

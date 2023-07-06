@@ -1,0 +1,50 @@
+{% extends 'news/base.html' %}
+{% block content %}
+<div id="friends" style="margin: auto;width: 80%;border: 3px solid green;padding: 10px;">
+    Friends:
+    <b-list-group >
+        {% for friend in friends %}
+
+            {% if friend.is_online %}
+                <b-list-group-item class="d-flex align-items-center">
+                    <b-avatar badge badge-variant="success" src="{{ friend.profile_pic.url }}" variant="info" href="/accounts/{{ friend.user.username }}/" class="mr-3" ></b-avatar>
+                        <span class="mr-auto">{{ friend.user.username }} <b-button onclick=" sendPartyInvite('{{ friend.user.username }}')" id="{{ friend.user.username }}" pill variant="info">Invite</b-button></span>
+                </b-list-group-item>
+            {% else %}
+                <b-list-group-item class="d-flex align-items-center">
+                    <b-avatar badge badge-variant="danger" src="{{ friend.profile_pic.url }}" variant="info" href="/accounts/{{ friend.user.username }}/" class="mr-3" ></b-avatar>
+                        <span class="mr-auto">{{ friend.user.username }}</span>
+                </b-list-group-item>
+            {% endif %}
+        {% endfor %}
+    </b-list-group >
+</div>
+
+<div style="margin: auto;width: 80%;border: 3px solid green;padding: 10px;">
+    Friend Requests From: <br><br>
+    <ul>
+        {% for friend_request in friend_requests %}
+        <li id="{{ friend_request.sent_from.username }}" >{{ friend_request.sent_from.username }}
+                <button type="button" class="btn btn-outline-success buttons" id="{{ friend_request.sent_from.username }}_accept">Accept</button>
+                <button type="button" class="btn btn-outline-danger buttons" id="{{ friend_request.sent_from.username }}_reject">Reject</button>
+            <br><br>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block script %}
+
+
+    {% for friend_request in friend_requests %}
+        $("#{{ friend_request.sent_from.username }}_accept").click(function() {
+            acceptFriendRequest("{{ friend_request.sent_from.username }}" , "{{friend_request.id}}")
+            $("#{{ friend_request.sent_from.username }}").empty()
+        })
+        $("#{{ friend_request.sent_from.username }}_reject").click(function() {
+            rejectFriendRequest("{{friend_request.id}}")
+            $("#{{ friend_request.sent_from.username }}").empty()
+        })
+    {% endfor %}
+{% endblock %}
